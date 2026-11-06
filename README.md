@@ -1,23 +1,34 @@
-# GitHub Deriver
+# GitHub Deriver & Push Tools
 
-A simple Python program that derives insights from a GitHub user's public profile and repositories.
+Two simple Python programs for working with GitHub:
 
-## Features
-- User overview (name, bio, followers, etc.)
-- Top 10 repositories by stars
-- Language distribution
-- Simple activity score
+1. **github_deriver.py** - Derive insights from a GitHub user's public profile and repositories.
+2. **push_to_github.py** - Push files to a GitHub repository using the REST API.
 
 ## Setup
+
 ```bash
 pip install requests
-export GITHUB_TOKEN=your_token_here  # optional, for higher rate limits
+export GITHUB_TOKEN=your_personal_access_token
+```
+
+Get a token at: https://github.com/settings/tokens (needs `repo` scope for pushing).
+
+## Usage
+
+### Analyze a user
+```bash
 python github_deriver.py xudaniel
 ```
 
-## Example
+### Push files via API
 ```bash
-python github_deriver.py torvalds
+python push_to_github.py
 ```
 
-This tool only uses public GitHub API endpoints.
+Edit the `OWNER`, `REPO`, and file content inside `push_to_github.py` as needed.
+
+## Notes
+- Both scripts use the public GitHub REST API.
+- Rate limits apply; using a token raises the limit significantly.
+- The push script handles create and update (requires existing file SHA for updates).
